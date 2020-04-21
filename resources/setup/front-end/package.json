@@ -1,0 +1,16 @@
+{
+  "name": "meme-ory",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  },
+  "devDependencies": {},
+  "private": true,
+  "scripts": {
+    "test": "echo\"Error:no test specified\" && exit 1"
+  },
+  "author": "Elise & Roxanne",
+  "main": "index.js",
+  "license": "ISC",
+  "description": ""
+}
