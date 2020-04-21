@@ -16,7 +16,7 @@
         this._elt = document.getElementById('card-template').content.cloneNode(true).firstElementChild;
         this._imageElt = this._elt.querySelector('.card-wrapper');
         // TODO Step 3.2: use template literals
-        this._imageElt.querySelector('img.front-face').src = './card/assets/***' + this._id  ;
+        this._imageElt.querySelector('img.front-face').src = './card/assets/card-' + this._id + '.png';
         this._imageElt.querySelector('img.back-face').src = './card/assets/back.png';
     }
 
