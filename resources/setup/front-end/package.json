@@ -4,13 +4,15 @@
   "dependencies": {
     "bootstrap": "^4.4.1"
   },
-  "devDependencies": {},
-  "private": true,
-  "scripts": {
-    "test": "echo\"Error:no test specified\" && exit 1"
+  "devDependencies": {
+    "http-server": "^0.12.1"
   },
+  "private": true,
   "author": "Elise & Roxanne",
   "main": "index.js",
   "license": "ISC",
+  "scripts": {
+    "start": "http-server -c-1"
+  },
   "description": ""
 }
