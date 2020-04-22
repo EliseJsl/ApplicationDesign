@@ -6,9 +6,11 @@
   "dependencies": {
     "bootstrap": "^4.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -c-1"
   },
   "author": "Elise & Roxanne",
   "license": "MIT"
