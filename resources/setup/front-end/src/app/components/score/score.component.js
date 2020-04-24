@@ -25,16 +25,17 @@
         let query = url.href.split('?')[1] || '';
         let delimiter = '&';
         let result = {};
-
         let parts = query
             .split(delimiter);
-        // TODO Step 3.3: Use Array.map() & Array.reduce()
-        for (let i in parts) {
-            let item = parts[i];
-            let kv = item.split('=');
-            result[kv[0]] = kv[1];
-        }
 
+        parts
+        .map( i => {
+            kv=i.split('=');
+            kv.reduce( (nom , size, time) => {
+                console.log(nom + " " + size )
+                result[nom]= size;
+            })
+        })
         return result;
     }
 
