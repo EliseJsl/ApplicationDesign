@@ -7,38 +7,21 @@
         }
     };
 
-    // TODO Step 3.1 create a class
-    /* class GameComponent constructor */
-    function GameComponent() {
-        // gather parameters from URL
+    
+    class GameComponent {
+        constructor(id){
+           // gather parameters from URL
         var params = parseUrl();
 
         // save player name & game ize
         this._name = params.name;
         this._size = parseInt(params.size) || 9;
         this._flippedCard = null;
-        this._matchedPairs = 0;
-    }
+        this._matchedPairs = 0; 
+        }
 
-    /* method GameComponent.init */
-    GameComponent.prototype.init = init;
-
-    // TODO Step 6 implement getTemplate() {}
-
-    /* method GameComponent.start */
-    GameComponent.prototype.start = start;
-
-    /* method GameComponent.fetchConfig */
-    GameComponent.prototype.fetchConfig = fetchConfig;
-
-    /* method GameComponent.gotoScore */
-    GameComponent.prototype.gotoScore = gotoScore;
-
-    /* method GameComponent._flipCard */
-    GameComponent.prototype._flipCard = _flipCard;
-
-    function init() {
-        // fetch the cards configuration from the server
+        init(){
+            // fetch the cards configuration from the server
         this.fetchConfig((function(config) { // TODO Step 3.2: use arrow function
             this._config = config;
 
@@ -60,10 +43,10 @@
 
             this.start();
         }).bind(this));
-    }
+        }
 
-    function start() {
-        this._startTime = Date.now();
+        start(){
+            this._startTime = Date.now();
         var seconds = 0;
         // TODO Step 3.2: use template literals
         document.querySelector('nav .navbar-title').textContent = 'Player: ' + this._name + '. Elapsed time: ' + seconds++;
@@ -72,10 +55,10 @@
             // TODO Step 3.2: use template literals
             document.querySelector('nav .navbar-title').textContent = 'Player: ' + this._name + '. Elapsed time: ' + seconds++;
         }.bind(this), 1000);
-    }
+        }
 
-    function gotoScore() {
-        var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
+        gotoScore(){
+            var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
         clearInterval(this._timer);
 
         setTimeout(function() {  // TODO Step 3.2: use arrow function.
@@ -83,9 +66,10 @@
             // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
             window.location = '../score/score.component.html?name=' + this._name + '&size=' + this._size + '&time=' + timeElapsedInSeconds;
         }.bind(this), 750);    // TODO Step 3.2: Why bind(this)?
-    }
-
-    function fetchConfig(cb) {
+    
+        }
+        
+        fetchConfig(cb) {
         var xhr = typeof XMLHttpRequest != 'undefined'
             ? new XMLHttpRequest()
             : new ActiveXObject('Microsoft.XMLHTTP');
@@ -111,7 +95,7 @@
         xhr.send();
     }
 
-    function _flipCard(card) {
+    _flipCard(card) {
         if (this._busy) {
             return;
         }
@@ -161,6 +145,13 @@
             }
         }
     }
+    }
+
+    
+
+    
+
+    
 
     function parseUrl() {
         var url = window.location;

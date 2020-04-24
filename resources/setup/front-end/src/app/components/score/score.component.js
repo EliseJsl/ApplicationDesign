@@ -2,23 +2,25 @@
 
 (function() {      // TODO Step 6 remove this closure
 
-    // TODO Step 3.1 create a class
-    /* class ScoreComponent constructor */
-    function ScoreComponent() {
-        var params = parseUrl();
+    
+    class ScoreComponent {
+        constructor(){
+            var params = parseUrl();
         this.name = params.name;
         this.size = parseInt(params.size);
         this.time = parseInt(params.time);
-    }
-
-    /* method ScoreComponent.init */
-    ScoreComponent.prototype.init = init;
-
-    function init() {
+        }
+        
+        init() {
         document.getElementById('name').innerText = this.name;
         document.getElementById('size').innerText = this.size;
         document.getElementById('time').innerText = this.time;
     }
+    }
+
+    
+
+    
 
     // TODO Step 6 implement getTemplate() {}
 
