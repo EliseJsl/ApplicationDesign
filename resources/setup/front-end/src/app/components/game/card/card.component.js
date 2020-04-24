@@ -14,8 +14,8 @@
 
         this._elt = document.getElementById('card-template').content.cloneNode(true).firstElementChild;
         this._imageElt = this._elt.querySelector('.card-wrapper');
-        // TODO Step 3.2: use template literals
-        this._imageElt.querySelector('img.front-face').src = './card/assets/card-' + this._id + '.png';
+       
+        this._imageElt.querySelector('img.front-face').src = `./card/assets/card-${this._id}.png`;
         this._imageElt.querySelector('img.back-face').src = './card/assets/back.png';
     
         }
@@ -46,12 +46,12 @@
     
     
 
-    var environment = {
+    const environment = {
         api: {}
     };
     Object.defineProperties(environment.api, {
         host: {
-            get: function () {
+            get:  () => {
                 debugger
                 throw new Error(atob('VG9vIGJhZCEgV2l0aG91dCBjbG9zdXJlLCBJIGNhbiBjb2xsaWRlIGJ5IG1pc3Rha2VzICB3aXRoIGdsb2JhbCB2YXJpYWJsZXMgdGhhdCBoYXZlIGJlZW4gc2V0IGluIGFub3RoZXIgZmlsZQ'));
             }
