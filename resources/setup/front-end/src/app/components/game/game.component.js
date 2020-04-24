@@ -6,10 +6,10 @@
             host: 'http://localhost:8081'
         }
     };
-
-    // TODO Step 3.1 create a class
+    
     /* class GameComponent constructor */
-    function GameComponent() {
+    class GameComponent {
+        constructor(){
         // gather parameters from URL
         var params = parseUrl();
 
@@ -20,24 +20,7 @@
         this._matchedPairs = 0;
     }
 
-    /* method GameComponent.init */
-    GameComponent.prototype.init = init;
-
-    // TODO Step 6 implement getTemplate() {}
-
-    /* method GameComponent.start */
-    GameComponent.prototype.start = start;
-
-    /* method GameComponent.fetchConfig */
-    GameComponent.prototype.fetchConfig = fetchConfig;
-
-    /* method GameComponent.gotoScore */
-    GameComponent.prototype.gotoScore = gotoScore;
-
-    /* method GameComponent._flipCard */
-    GameComponent.prototype._flipCard = _flipCard;
-
-    function init() {
+    init() {
         // fetch the cards configuration from the server
         this.fetchConfig((function(config) { // TODO Step 3.2: use arrow function
             this._config = config;
@@ -62,7 +45,7 @@
         }).bind(this));
     }
 
-    function start() {
+    start() {
         this._startTime = Date.now();
         var seconds = 0;
         // TODO Step 3.2: use template literals
@@ -74,7 +57,7 @@
         }.bind(this), 1000);
     }
 
-    function gotoScore() {
+    gotoScore() {
         var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
         clearInterval(this._timer);
 
@@ -84,8 +67,7 @@
             window.location = '../score/score.component.html?name=' + this._name + '&size=' + this._size + '&time=' + timeElapsedInSeconds;
         }.bind(this), 750);    // TODO Step 3.2: Why bind(this)?
     }
-
-    function fetchConfig(cb) {
+    fetchConfig(cb) {
         var xhr = typeof XMLHttpRequest != 'undefined'
             ? new XMLHttpRequest()
             : new ActiveXObject('Microsoft.XMLHTTP');
@@ -110,8 +92,7 @@
         };
         xhr.send();
     }
-
-    function _flipCard(card) {
+    _flipCard(card) {
         if (this._busy) {
             return;
         }
@@ -162,6 +143,8 @@
         }
     }
 
+}
+    // TODO Step 6 implement getTemplate() {}
     function parseUrl() {
         var url = window.location;
         var query = url.href.split('?')[1] || '';
