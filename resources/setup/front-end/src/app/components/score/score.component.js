@@ -32,14 +32,18 @@
 
         let parts = query
             .split(delimiter);
-        // TODO Step 3.3: Use Array.map() & Array.reduce()
-        for (let i in parts) {
-            let item = parts[i];
-            let kv = item.split('=');
-            result[kv[0]] = kv[1];
-        }
+        
 
+        parts.map((i) =>{
+            kv = i.split('=');
+            kv.reduce((nom, valeur) => {
+                result[nom] = valeur;
+            }
+                )
+            })        
+        console.log(result);
         return result;
+
     }
 
     // put component in global scope, tu be runnable right from the HTML.
