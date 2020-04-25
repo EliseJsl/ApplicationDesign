@@ -20,9 +20,11 @@
         this._matchedPairs = 0; 
         }
 
-        init(){
+        async init(){
+
+            const config = await this.fetchConfig();
             // fetch the cards configuration from the server
-        this.fetchConfig((config) =>{ 
+        
             this._config = config;
 
             // create a card out of the config
@@ -39,7 +41,7 @@
             
 
             this.start();
-        });
+        
         }
 
         start(){
@@ -66,31 +68,15 @@
     
         }
         
-        fetchConfig(cb) {
-        let xhr = typeof XMLHttpRequest != 'undefined'
-            ? new XMLHttpRequest()
-            : new ActiveXObject('Microsoft.XMLHTTP');
 
-        
-        xhr.open('get', `${environment.api.host}/board?size=${ this._size}`, true);
+    async fetchConfig() {
+    return fetch(`${environment.api.host}/board?size=${this._size}`, {
+      method: "GET"
+    })
+      .then(response => response.json())
+      .catch(error => console.log("Fetch config error", error));
+  }
 
-        
-        xhr.onreadystatechange = () => {
-            let status;
-            let data;
-            // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-            if (xhr.readyState == 4) { // `DONE`
-                status = xhr.status;
-                if (status == 200) {
-                    data = JSON.parse(xhr.responseText);
-                    cb(data);
-                } else {
-                    throw new Error(status)
-                }
-            }
-        };
-        xhr.send();
-    }
 
     _flipCard(card) {
         if (this._busy) {
