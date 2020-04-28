@@ -1,6 +1,10 @@
-// TODO Step 6 import "./game.component.html"
+import "./game.component.html"
+import {CardComponent} from './card/card.component';
+import template from "./game.component.html"
+//import "./game.component.css"
+import {Component} from '../../utils/component';
 import { parseUrl } from '../../utils/utils';
-(function() {    // TODO Step 6 remove this closure
+
     let environment = {
         api: {
             host: 'http://localhost:8081'
@@ -8,8 +12,10 @@ import { parseUrl } from '../../utils/utils';
     };
     
     /* class GameComponent constructor */
-    class GameComponent {
+    export class GameComponent extends Component {
+        
         constructor(){
+            super('GameComponent')
         // gather parameters from URL
         let params = parseUrl();
 
@@ -20,11 +26,9 @@ import { parseUrl } from '../../utils/utils';
         this._matchedPairs = 0;
     }
 
-    init() {
+    async init() {
         // fetch the cards configuration from the server
-        this.fetchConfig((config) => {
-            this._config = config;
-            
+        this._config =  await this.fetchConfig();
             // create a card out of the config
             this._cards = this._config.ids.map(i => new CardComponent(i)); 
 
@@ -36,7 +40,7 @@ import { parseUrl } from '../../utils/utils';
              })
 
             this.start();
-        });
+       
     }
 
     start() {
@@ -50,13 +54,10 @@ import { parseUrl } from '../../utils/utils';
     }
 
     gotoScore() {
-        let timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
-        clearInterval(this._timer);
+        const timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
 
-        setTimeout(() => {  
-            // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
-            window.location = `../score/score.component.html?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}` ;
-        }, 750);   
+        setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`, 750);
+    
     }
 
     async fetchConfig(){
@@ -115,12 +116,11 @@ import { parseUrl } from '../../utils/utils';
         }
     }
 
+    getTemplate(){
+        return template;
+    }
+
 }
-    // TODO Step 6 implement getTemplate() {}
     
 
-    // put component in global scope, tu be runnable right from the HTML.
-    // TODO Step 6: export GameComponent
-    window.GameComponent = GameComponent;
-})();
 

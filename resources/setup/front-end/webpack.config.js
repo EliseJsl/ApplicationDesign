@@ -24,11 +24,30 @@ module.exports = {
                     'file-loader'
                 ]
             },
+
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
             {
                 test: /\.js$/,
                 use: 'babel-loader',
                 exclude: /node_modules/
-            }
+            },
+
+            {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                    options:{
+                        
+                    }
+                }
+            },
         ]
     }
 };

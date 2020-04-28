@@ -1,10 +1,13 @@
-// TODO Step 6 import "./score.component.html"
-
-(function() {      // TODO Step 6 remove this closure
-
+import template from './score.component.html';
+import "./score.component.html";
+import "./score.component.css"
+import {Component} from '../../utils/component';
+import { parseUrl} from '../../utils/utils';
     /* class ScoreComponent constructor */
-    class ScoreComponent {
+   export class ScoreComponent extends Component {
+    
         constructor(){
+            super('ScoreComponent')
             let params = parseUrl();
         this.name = params.name;
         this.size = parseInt(params.size);
@@ -17,29 +20,9 @@
             document.getElementById('time').innerText = this.time;
         }
         
+    
+    getTemplate(){
+        return template;
     }
-    // TODO Step 6 implement getTemplate() {}
+}
 
-    function parseUrl() {
-        let url = window.location;
-        let query = url.href.split('?')[1] || '';
-        let delimiter = '&';
-        let result = {};
-        let parts = query
-            .split(delimiter);
-
-        parts
-        .map( i => {
-            kv=i.split('=');
-            kv.reduce( (nom , size, time) => {
-                console.log(nom + " " + size )
-                result[nom]= size;
-            })
-        })
-        return result;
-    }
-
-    // put component in global scope, tu be runnable right from the HTML.
-    // TODO Step 6 export ScoreComponent
-    window.ScoreComponent = ScoreComponent;
-})();
