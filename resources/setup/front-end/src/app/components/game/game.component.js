@@ -1,5 +1,5 @@
 // TODO Step 6 import "./game.component.html"
-
+import { parseUrl } from '../../utils/utils';
 (function() {    // TODO Step 6 remove this closure
     let environment = {
         api: {
@@ -20,13 +20,11 @@
         this._matchedPairs = 0;
     }
 
-    async init() {
-        const config = await this.fetchConfig();
-        
+    init() {
         // fetch the cards configuration from the server
-    //    this.fetchConfig((config) => {
+        this.fetchConfig((config) => {
             this._config = config;
-           
+            
             // create a card out of the config
             this._cards = this._config.ids.map(i => new CardComponent(i)); 
 
@@ -38,7 +36,7 @@
              })
 
             this.start();
-        
+        });
     }
 
     start() {
@@ -61,13 +59,15 @@
         }, 750);   
     }
 
-
-   async fetchConfig() {
+    async fetchConfig(){
         return fetch(`${environment.api.host}/board?size=${this._size}`, {method: 'GET'})
         .then(response => response.json())
         .catch(error => console.log('Fetch config error', error));
 
     }
+
+
+
     _flipCard(card) {
         if (this._busy) {
             return;
@@ -117,23 +117,7 @@
 
 }
     // TODO Step 6 implement getTemplate() {}
-    function parseUrl() {
-        let url = window.location;
-        let query = url.href.split('?')[1] || '';
-        let delimiter = '&';
-        let result = {};      
-        let parts = query
-            .split(delimiter);
-        parts
-            .map( i => {
-                kv=i.split('=');
-                kv.reduce( (nom , valeur) => {
-                    result[nom]= valeur;
-                })
-            })
-
-         return result;
-    }
+    
 
     // put component in global scope, tu be runnable right from the HTML.
     // TODO Step 6: export GameComponent
