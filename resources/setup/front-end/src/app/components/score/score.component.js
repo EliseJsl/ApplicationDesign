@@ -1,6 +1,6 @@
 import template from './score.component.html';
 import "./score.component.html";
-import "./score.component.css"
+import "./score.component.scss"
 import {Component} from '../../utils/component';
 import { parseUrl} from '../../utils/utils';
     /* class ScoreComponent constructor */

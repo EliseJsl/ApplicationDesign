@@ -1,5 +1,5 @@
 import template from './card.component.html'
-import "./card.component.css"
+import "./card.component.scss"
 import "./card.component.html";
 import {Component} from '../../../utils/component';
 

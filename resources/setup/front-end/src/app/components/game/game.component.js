@@ -1,7 +1,6 @@
 import "./game.component.html"
 import {CardComponent} from './card/card.component';
 import template from "./game.component.html"
-//import "./game.component.css"
 import {Component} from '../../utils/component';
 import { parseUrl } from '../../utils/utils';
 
