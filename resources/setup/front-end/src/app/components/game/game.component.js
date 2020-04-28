@@ -1,7 +1,9 @@
 // TODO Step 6 import "./game.component.html"
+import {Component} from '../../utils/component';
 import { parseUrl } from '../../utils/utils';
+import template from './game.component.html';
+import {CardComponent} from './card/card.component';
 
-(function() {    // TODO Step 6 remove this closure
     const environment = {
         api: {
             host: 'http://localhost:8081'
@@ -9,8 +11,10 @@ import { parseUrl } from '../../utils/utils';
     };
 
     
-    class GameComponent {
+    export class GameComponent extends Component {
+        
         constructor(id){
+            super('GameComponent');
            // gather parameters from URL
         const params = parseUrl();
 
@@ -45,6 +49,10 @@ import { parseUrl } from '../../utils/utils';
         
         }
 
+        getTemplate(){
+            return template;
+        }
+
         start(){
             this._startTime = Date.now();
         let seconds = 0;
@@ -58,14 +66,10 @@ import { parseUrl } from '../../utils/utils';
         }
 
         gotoScore(){
-            let timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
-        clearInterval(this._timer);
+            const timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
 
-        setTimeout(() =>  
-            
-            // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
-            window.location = `../score/score.component.html?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`
-        , 750);    
+    setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`, 750);
+  
     
         }
         
@@ -134,8 +138,7 @@ import { parseUrl } from '../../utils/utils';
     
 
 
-    // put component in global scope, tu be runnable right from the HTML.
-    // TODO Step 6: export GameComponent
-    window.GameComponent = GameComponent;
-})();
+    
+    
+
 

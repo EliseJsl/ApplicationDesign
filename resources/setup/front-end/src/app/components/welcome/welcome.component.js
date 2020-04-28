@@ -1,9 +1,16 @@
 // TODO Step 6 import "./welcome.component.html"
 
-(function() {   // TODO Step 6 remove this closure
-
+import {Component} from '../../utils/component';
+import template from './welcome.component.html';
+import './welcome.component.css';
     
-    class WelcomeComponent {
+    export class WelcomeComponent extends Component {
+        constructor(){
+            super('WelcomeComponent');
+        }
+
+
+       
        init() {
         const form = document.querySelector('form.form-signin');
 
@@ -24,6 +31,10 @@
         return this;
     }
 
+    getTemplate(){
+            return template;
+        }
+
     
 
     
@@ -31,12 +42,8 @@
     
     // TODO Step 6 implement getTemplate() {}
     function _startGame(name, size) {
-        
-        // TODO Step 6: change path to: `game?name=${name}=name&size=${size}`
-        window.location = `../game/game.component.html?name=${name}&size=${size}`;
+        window.location.hash = `game?name=${name}=name&size=${size}`;
     } 
 
-    // put component in global scope, tu be runnable right from the HTML.
-    // TODO Step 6 export WelcomeComponent
-    window.WelcomeComponent = WelcomeComponent
-})();
+    
+    
