@@ -1,4 +1,5 @@
 // TODO Step 6 import "./game.component.html"
+import { parseUrl } from '../../utils/utils';
 
 (function() {    // TODO Step 6 remove this closure
     const environment = {
@@ -132,31 +133,6 @@
 
     
 
-    
-
-    
-
-    function parseUrl() {
-        const url = window.location;
-        const query = url.href.split('?')[1] || '';
-        const delimiter = '&';
-        let result = {};
-
-        let parts = query
-            .split(delimiter);
-                
-        
-        parts.map((i) =>{
-            kv = i.split('=');
-            kv.reduce((nom, valeur) => {
-                result[nom] = valeur;
-            }
-                )
-            })        
-
-        return result;
-
-    }
 
     // put component in global scope, tu be runnable right from the HTML.
     // TODO Step 6: export GameComponent
