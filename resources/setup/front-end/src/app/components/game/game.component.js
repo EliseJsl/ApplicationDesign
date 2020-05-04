@@ -68,8 +68,10 @@ import {CardComponent} from './card/card.component';
         gotoScore(){
             const timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
 
-    setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`, 750);
-  
+            clearInterval(this._timer);
+
+            setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`, 750);
+
     
         }
         
