@@ -1,6 +1,8 @@
 {
-  "name": "meme-ory",
+  "private": true,
+  "name": "Meme-ory",
   "version": "1.0.0",
+  "description": "",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.5"

@@ -104,9 +104,9 @@ import { parseUrl } from '../../utils/utils';
                 // wait a short amount of time before hiding both cards
                 setTimeout(() => {
                     // hide the cards
-                    this._flippedCard.flip();
-                    card.flip();
-                    this._busy = false;
+                    this._flippedCard.flip()
+                    card.flip()
+                    this._busy = false
 
                     // reset flipped card for the next turn.
                     this._flippedCard = null;
@@ -119,7 +119,16 @@ import { parseUrl } from '../../utils/utils';
         return template;
     }
 
-}
+    }
+
+    
+
+    
+
+    
+
+
+
     
 
 
