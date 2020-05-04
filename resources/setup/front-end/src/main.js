@@ -1,6 +1,5 @@
 // meme-ory/src/main.js
 import './app/styles/style.scss';
-import 'bootstrap/dist/css/bootstrap.css';
 
 import { Router } from './app/utils/router';
 import { WelcomeComponent } from './app/components/welcome/welcome.component';
