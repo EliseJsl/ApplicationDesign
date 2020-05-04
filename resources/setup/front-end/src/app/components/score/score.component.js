@@ -2,7 +2,7 @@
 
 import {Component} from '../../utils/component';
 import template from './score.component.html';
-import './score.component.css';
+import './score.component.scss';
 import { parseUrl} from '../../utils/utils';
     
     export class ScoreComponent extends Component {

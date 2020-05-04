@@ -2,7 +2,7 @@
 
 import {Component} from '../../../utils/component';
 import template from './card.component.html';
-import './card.component.css';
+import './card.component.scss';
 
     export class CardComponent extends Component {
         
